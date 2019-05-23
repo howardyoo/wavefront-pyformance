@@ -109,7 +109,7 @@ class WavefrontProxyReporter(WavefrontReporter):
     """Requires a host and port to report data to a Wavefront proxy."""
 
     # pylint: disable=too-many-arguments
-    def __init__(self, host, port=2878, distribution_port=None,
+    def __init__(self, host, port=2878, distribution_port=None, tracing_port=None,
                  source='wavefront-pyformance', registry=None,
                  reporting_interval=10, clock=None, prefix='proxy.',
                  tags=None):
@@ -120,7 +120,7 @@ class WavefrontProxyReporter(WavefrontReporter):
             tags=tags)
         self.wavefront_client = wavefront_sdk.WavefrontProxyClient(
             host=host, metrics_port=port, distribution_port=distribution_port,
-            tracing_port=None)
+            tracing_port=tracing_port)
 
     def report_now(self, registry=None, timestamp=None):
         """Collect metrics from registry and report them to Wavefront."""
